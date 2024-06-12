@@ -47,8 +47,8 @@
             this.ToolMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(755, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1007, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -62,70 +62,76 @@
             this.Print,
             this.Exit});
             this.ToolMenu.Name = "ToolMenu";
-            this.ToolMenu.Size = new System.Drawing.Size(37, 20);
+            this.ToolMenu.Size = new System.Drawing.Size(46, 24);
             this.ToolMenu.Text = "File";
             // 
             // New
             // 
             this.New.Name = "New";
             this.New.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.New.Size = new System.Drawing.Size(186, 22);
+            this.New.Size = new System.Drawing.Size(233, 26);
             this.New.Text = "New";
+            this.New.Click += new System.EventHandler(this.New_Click);
             // 
             // Open
             // 
             this.Open.Name = "Open";
             this.Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.Open.Size = new System.Drawing.Size(186, 22);
+            this.Open.Size = new System.Drawing.Size(233, 26);
             this.Open.Text = "Open";
+            this.Open.Click += new System.EventHandler(this.Open_Click);
             // 
             // Save
             // 
             this.Save.Name = "Save";
             this.Save.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.Save.Size = new System.Drawing.Size(186, 22);
+            this.Save.Size = new System.Drawing.Size(233, 26);
             this.Save.Text = "Save";
+            this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
             // Save_As
             // 
             this.Save_As.Name = "Save_As";
             this.Save_As.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.Save_As.Size = new System.Drawing.Size(186, 22);
+            this.Save_As.Size = new System.Drawing.Size(233, 26);
             this.Save_As.Text = "Save As";
+            this.Save_As.Click += new System.EventHandler(this.Save_As_Click);
             // 
             // Print
             // 
             this.Print.Name = "Print";
             this.Print.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.Print.Size = new System.Drawing.Size(186, 22);
+            this.Print.Size = new System.Drawing.Size(233, 26);
             this.Print.Text = "Print";
+            this.Print.Click += new System.EventHandler(this.Print_Click);
             // 
             // Exit
             // 
             this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(186, 22);
+            this.Exit.Size = new System.Drawing.Size(233, 26);
             this.Exit.Text = "Exit";
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // richTextBox1
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 24);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 28);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(755, 454);
+            this.richTextBox1.Size = new System.Drawing.Size(1007, 560);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
             // NotePad
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 478);
+            this.ClientSize = new System.Drawing.Size(1007, 588);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "NotePad";
             this.Text = "NotePad";
             this.menuStrip1.ResumeLayout(false);

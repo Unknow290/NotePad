@@ -12,12 +12,34 @@ namespace NotePad
 {
     public partial class NotePad : Form
     {
+        private bool isSaved;
         public NotePad()
         {
             InitializeComponent();
         }
 
         private void New_Click(object sender, EventArgs e)
+        {
+            if (!isSaved)
+            {
+                var result = MessageBox.Show("You have unsaved changes. Do you want to save them before creating a new note?", "Unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    NewNote();
+                }
+                else if (result == DialogResult.No)
+                {
+                    NewNote(); 
+                }
+            }
+            else
+            {
+                NewNote(); 
+            }
+        }
+
+        private void NewNote()
         {
             NotePad np = new NotePad();
             np.Show();

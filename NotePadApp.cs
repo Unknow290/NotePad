@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NotePad
+namespace NotePad // notepad
 {
     public partial class NotePad : Form
     {

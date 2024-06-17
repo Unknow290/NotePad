@@ -25,20 +25,22 @@ namespace NotePad // notepad
         {
             if (!isSaved) // checks to see if you want to save your work
             {
-                var result = MessageBox.Show("You have unsaved changes. Do you want to save them before creating a new note?", "Unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                exitPrompt();
 
-                if (result == DialogResult.Yes)
+                if (DialogResult == DialogResult.Yes)
                 {
-                    SaveFile();
-                    NewNote();
+                    SaveFile(); 
+                    richTextBox1.Text = String.Empty;
                 }
-                else if (result == DialogResult.No)
+                else if (DialogResult == DialogResult.No)
                 {
+                    this.Hide();
                     NewNote();
                 }
             }
-            else
+            else //if work has already been saved
             {
+                this.Hide();
                 NewNote();
             }
         }
@@ -56,6 +58,14 @@ namespace NotePad // notepad
                 isSaved = true;
             }
 
+        }
+        private void exitPrompt() //exit message
+        {
+            DialogResult = MessageBox.Show("Do you want to save current file?",
+                "Notepad",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
         }
 
         private void Save_Click(object sender, EventArgs e)
@@ -75,7 +85,8 @@ namespace NotePad // notepad
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            exitPrompt();
+            SaveFile();
         }
         private void NewNote()
         {

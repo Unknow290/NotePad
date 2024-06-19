@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace NotePad // notepad
+namespace NotePad // notepad!!
 {
     public partial class NotePad : Form
     {
@@ -23,7 +23,7 @@ namespace NotePad // notepad
 
         private void New_Click(object sender, EventArgs e)
         {
-            if (!isSaved) // checks to see if you want to save your work
+            if (!isSaved || richTextBox1.Text.Length >= 1) // checks to see if you want to save your work
             {
                 exitPrompt();
 
@@ -46,27 +46,28 @@ namespace NotePad // notepad
         }
         private void Open_Click(object sender, EventArgs e) // opens an existing file
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            if (ofd.ShowDialog() == DialogResult.OK)
+            if (richTextBox1.Text.Length >= 1) // checks to see if you want to save your work
             {
-                currentFilePath = ofd.FileName;
-                using (StreamReader sr = new StreamReader(currentFilePath))
-                {
-                    richTextBox1.Text = sr.ReadToEnd();
-                }
-                isSaved = true;
-            }
+                exitPrompt();
 
+                if (DialogResult == DialogResult.Yes)
+                {
+                    SaveFile();
+                    richTextBox1.Text = String.Empty;
+                }
+                else if (DialogResult == DialogResult.No)
+                {
+                    OpenNote();
+                  
+                }
+            }
+            else
+            {
+                OpenNote();
+            }
+            
         }
-        private void exitPrompt() //exit message
-        {
-            DialogResult = MessageBox.Show("Do you want to save current file?",
-                "Notepad",
-                MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2);
-        }
+        
 
         private void Save_Click(object sender, EventArgs e)
         {
@@ -85,13 +86,54 @@ namespace NotePad // notepad
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            exitPrompt();
-            SaveFile();
+            if (richTextBox1.Text.Length >= 1) // checks to see if you want to save your work
+            {
+                exitPrompt();
+
+                if (DialogResult == DialogResult.Yes)
+                {
+                    SaveFile();
+                    this.Close();
+
+                }
+                else if (DialogResult == DialogResult.No)
+                {
+                    this.Close(); 
+                }
+            }
+            else 
+            { 
+                this.Close(); 
+            }
         }
-        private void NewNote()
+
+        private void OpenNote() //opens note
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                currentFilePath = ofd.FileName;
+                using (StreamReader sr = new StreamReader(currentFilePath))
+                {
+                    richTextBox1.Text = sr.ReadToEnd();
+                }
+                isSaved = true;
+            }
+        }
+        private void NewNote() //creates new note
         {
             NotePad np = new NotePad();
+            np.Closed += (s, args) => this.Close(); //closes all hiden notes
             np.Show();
+        }
+        private void exitPrompt() //exit message
+        {
+            DialogResult = MessageBox.Show("Do you want to save current file?",
+                "Notepad",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
         }
         private void SaveAsFile() // Saves as / code behind the save file
         {
